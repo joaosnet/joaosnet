@@ -12,14 +12,19 @@
 
 **Aplicações e dados**
 
+![python](https://img.shields.io/badge/-Python-333333?style=flat&logo=python)
+![C](https://img.shields.io/badge/-C-333333?style=flat&logo=C)
+![django](https://img.shields.io/badge/-Django-333333?style=flat&logo=django)
+![flask](https://img.shields.io/badge/-Flask-333333?style=flat&logo=flask)
+![postgresql](https://img.shields.io/badge/-PostgreSQL-333333?style=flat&logo=postgresql)
+![firebase](https://img.shields.io/badge/-Firebase-333333?style=flat&logo=firebase)
+![redis](https://img.shields.io/badge/-Redis-333333?style=flat&logo=redis)
+![aws](https://img.shields.io/badge/-AWS-333333?style=flat&logo=amazon-aws)
 ![Java](https://img.shields.io/badge/-Java-333333?style=flat&logo=Java&logoColor=007396)
 ![HTML5](https://img.shields.io/badge/-HTML5-333333?style=flat&logo=HTML5)
 ![CSS](https://img.shields.io/badge/-CSS-333333?style=flat&logo=CSS3&logoColor=1572B6)
-
-**Utilidades**
-
-![Insomnia](https://img.shields.io/badge/-Insomnia-333333?style=flat&logo=insomnia)
-![Postman](https://img.shields.io/badge/-Postman-333333?style=flat&logo=postman)
+![kivy](https://img.shields.io/badge/-Kivy-333333?style=flat&logo=kivy)
+![kivymd](https://img.shields.io/badge/-KivyMD-333333?style=flat&logo=kivy)
 
 **DevOps**
 
@@ -29,6 +34,7 @@
 
 **Ferramentas de desenvolvimento**
 
+![anaconda](https://img.shields.io/badge/-Anaconda-333333?style=flat&logo=anaconda)
 ![Visual Studio Code](https://img.shields.io/badge/-Visual%20Studio%20Code-333333?style=flat&logo=visual-studio-code&logoColor=007ACC)
 ![Trello](https://img.shields.io/badge/-Trello-333333?style=flat&logo=trello&logoColor=007ACC)
 ![Figma](https://img.shields.io/badge/-Figma-333333?style=flat&logo=figma&logoColor=007ACC)
@@ -36,7 +42,7 @@
 <br/>
 
 <a href="https://github.com/joaosnet" title="Perfil do João">
-  <img height="180em" src="https://github-readme-stats.vercel.app/api?username=joaosnet&theme=dracula&show_icons=true" />
+  <img height="180em" src="https://github-readme-stats.vercel.app/api?username=joaosnet&theme=tokyonight&show_icons=true" />
 </a>
 
 ### 🏆 Troféu de perfil do GitHub:
@@ -48,7 +54,7 @@
   >
     <img
       width="800"
-      src="https://github-profile-trophy.vercel.app/?username=joaosnet&column=8&theme=darkhub&no-frame=true&no-bg=true"
+      src="https://github-profile-trophy.vercel.app/?username=joaosnet&column=8&theme=tokyonight&no-frame=true&no-bg=true"
     />
   </a>
 </p>
