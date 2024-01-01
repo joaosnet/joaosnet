@@ -76,4 +76,4 @@
 
 [![Linkedin](https://img.shields.io/badge/-joaonativi-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/joaonativi)](https://www.linkedin.com/in/joaonativi)
 [![Gmail Badge](https://img.shields.io/badge/-joaodacruzneto8@gmail.com-006bed?style=flat-square&logo=Gmail&logoColor=white&link=mailto:joaodacruzneto8@gmail.com)](mailto:joaodacruzneto8@gmail.com)
-[![GitHub](https://img.shields.io/github/followers/joaosnet?label=Siga-me&style=social)](LINK-DO-SEU-GITHUB)
+[![GitHub](https://img.shields.io/github/followers/joaosnet?label=Follow&style=social)](https://github.com/joaosnet)
