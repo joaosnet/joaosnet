@@ -1,6 +1,7 @@
 """
 GitHub Profile README Updater
 Fetches stats from GitHub API and updates SVG files with dynamic data.
+Also converts GitHub profile picture to ASCII art automatically.
 
 João Natividade (joaosnet), 2024-2025
 Inspired by Andrew6rant/Andrew6rant
@@ -11,7 +12,8 @@ from dateutil import relativedelta
 import requests
 import os
 from lxml import etree
-import hashlib
+from io import BytesIO
+from PIL import Image
 
 # Configuration
 HEADERS = {'authorization': 'token ' + os.environ.get('ACCESS_TOKEN', '')}
@@ -21,6 +23,52 @@ BIRTH_YEAR = 2001  # Only year, no date exposed
 # Language classification
 PROGRAMMING_LANGUAGES = {'Python', 'JavaScript', 'TypeScript', 'Java', 'C', 'C++', 'C#', 'Go', 'Rust', 'Kotlin', 'Swift', 'Ruby', 'PHP', 'Dart', 'Scala'}
 MARKUP_LANGUAGES = {'HTML', 'CSS', 'SCSS', 'Sass', 'Less', 'Markdown', 'JSON', 'YAML', 'XML', 'LaTeX', 'Dockerfile'}
+
+# ASCII art configuration
+ASCII_CHARS = " .:-=+*#%@"  # From lightest to darkest
+ASCII_WIDTH = 35  # Characters wide
+ASCII_HEIGHT = 24  # Lines tall
+
+
+def get_profile_picture_url():
+    """Get the user's GitHub profile picture URL."""
+    query = '''
+    query($login: String!) {
+        user(login: $login) {
+            avatarUrl
+        }
+    }'''
+    result = simple_request(query, {'login': USER_NAME})
+    return result['data']['user']['avatarUrl']
+
+
+def image_to_ascii(image_url: str) -> list[str]:
+    """Convert an image URL to ASCII art."""
+    # Download image
+    response = requests.get(image_url)
+    img = Image.open(BytesIO(response.content))
+    
+    # Convert to grayscale
+    img = img.convert('L')
+    
+    # Resize image to ASCII dimensions (adjust aspect ratio for terminal chars)
+    img = img.resize((ASCII_WIDTH, ASCII_HEIGHT))
+    
+    # Convert pixels to ASCII characters
+    ascii_lines = []
+    pixels = list(img.getdata())
+    
+    for y in range(ASCII_HEIGHT):
+        line = ""
+        for x in range(ASCII_WIDTH):
+            pixel = pixels[y * ASCII_WIDTH + x]
+            # Map pixel value (0-255) to ASCII character
+            char_index = int(pixel / 256 * len(ASCII_CHARS))
+            char_index = min(char_index, len(ASCII_CHARS) - 1)
+            line += ASCII_CHARS[char_index]
+        ascii_lines.append(line)
+    
+    return ascii_lines
 
 
 def calculate_age():
@@ -99,7 +147,6 @@ def get_user_stats():
 
 def get_loc_stats():
     """Get lines of code stats (simplified version)."""
-    # This is a simplified version - full LoC counting requires extensive API calls
     query = '''
     query($login: String!) {
         user(login: $login) {
@@ -129,7 +176,7 @@ def get_loc_stats():
             total_commits += repo['defaultBranchRef']['target']['history']['totalCount']
     
     # Estimate LoC based on commits (rough approximation)
-    estimated_loc = total_commits * 50  # Average ~50 lines per commit
+    estimated_loc = total_commits * 50
     estimated_add = int(estimated_loc * 1.2)
     estimated_del = int(estimated_loc * 0.2)
     
@@ -145,7 +192,6 @@ def format_languages(all_languages):
     prog = [lang for lang in all_languages if lang in PROGRAMMING_LANGUAGES]
     markup = [lang for lang in all_languages if lang in MARKUP_LANGUAGES]
     
-    # Sort by importance/popularity
     prog_order = ['Python', 'JavaScript', 'TypeScript', 'C++', 'C', 'Java', 'Go', 'Rust']
     markup_order = ['HTML', 'CSS', 'SCSS', 'Markdown', 'JSON', 'YAML', 'Dockerfile']
     
@@ -158,15 +204,14 @@ def format_languages(all_languages):
     }
 
 
-def update_svg(filename, stats, loc_stats, languages):
-    """Update SVG file with new stats."""
+def update_svg(filename, stats, loc_stats, languages, ascii_art):
+    """Update SVG file with new stats and ASCII art."""
     tree = etree.parse(filename)
     root = tree.getroot()
     
-    # Define namespace
     ns = {'svg': 'http://www.w3.org/2000/svg'}
     
-    # Update each element
+    # Update text elements
     updates = {
         'age_data': calculate_age(),
         'languages_prog': languages['programming'],
@@ -183,15 +228,20 @@ def update_svg(filename, stats, loc_stats, languages):
     }
     
     for element_id, value in updates.items():
-        element = root.find(f".//*[@id='{element_id}']", ns)
-        if element is None:
-            # Try without namespace
-            for elem in root.iter():
-                if elem.get('id') == element_id:
-                    elem.text = value
-                    break
-        else:
-            element.text = value
+        for elem in root.iter():
+            if elem.get('id') == element_id:
+                elem.text = value
+                break
+    
+    # Update ASCII art in the SVG
+    # Find the ASCII art text element and update its tspan children
+    for elem in root.iter():
+        if elem.get('class') == 'ascii' or 'ascii' in (elem.get('class') or ''):
+            # Clear existing tspans and add new ones
+            tspans = list(elem)
+            for i, line in enumerate(ascii_art):
+                if i < len(tspans):
+                    tspans[i].text = line
     
     tree.write(filename, encoding='utf-8', xml_declaration=True)
     print(f"Updated {filename}")
@@ -202,6 +252,12 @@ def main():
     print("Fetching GitHub stats...")
     
     try:
+        # Get profile picture and convert to ASCII
+        print("  Generating ASCII art from profile picture...")
+        avatar_url = get_profile_picture_url()
+        ascii_art = image_to_ascii(avatar_url)
+        print(f"  ASCII art generated ({len(ascii_art)} lines)")
+        
         # Get stats
         stats = get_user_stats()
         print(f"  Repos: {stats['repos']}, Stars: {stats['stars']}, Followers: {stats['followers']}")
@@ -218,8 +274,8 @@ def main():
         print(f"  Markup: {languages['markup']}")
         
         # Update SVGs
-        update_svg('dark_mode.svg', stats, loc_stats, languages)
-        update_svg('light_mode.svg', stats, loc_stats, languages)
+        update_svg('dark_mode.svg', stats, loc_stats, languages, ascii_art)
+        update_svg('light_mode.svg', stats, loc_stats, languages, ascii_art)
         
         print("\nDone! SVG files updated successfully.")
         
