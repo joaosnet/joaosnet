@@ -1,7 +1,7 @@
 """
 GitHub Profile README Updater
 Fetches stats from GitHub API and updates SVG files with dynamic data.
-Also converts GitHub profile picture to ASCII art automatically.
+Uses stylized ASCII art banner for the name display.
 
 João Natividade (joaosnet), 2024-2025
 Inspired by Andrew6rant/Andrew6rant
@@ -12,8 +12,7 @@ from dateutil import relativedelta
 import requests
 import os
 from lxml import etree
-from io import BytesIO
-from PIL import Image
+
 
 # Configuration
 HEADERS = {'authorization': 'token ' + os.environ.get('ACCESS_TOKEN', '')}
@@ -24,75 +23,53 @@ BIRTH_YEAR = 2001  # Only year, no date exposed
 PROGRAMMING_LANGUAGES = {'Python', 'JavaScript', 'TypeScript', 'Java', 'C', 'C++', 'C#', 'Go', 'Rust', 'Kotlin', 'Swift', 'Ruby', 'PHP', 'Dart', 'Scala'}
 MARKUP_LANGUAGES = {'HTML', 'CSS', 'SCSS', 'Sass', 'Less', 'Markdown', 'JSON', 'YAML', 'XML', 'LaTeX', 'Dockerfile'}
 
-# ASCII art configuration - more detailed character set
-ASCII_CHARS = " .'`^\",:;Il!i><~+_-?][}{1)(|\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$"
-ASCII_WIDTH = 35  # Characters wide
-ASCII_HEIGHT = 20  # Lines tall (leaving room for name)
+# ASCII art configuration - stylized name banner (guaranteed readable)
+ASCII_WIDTH = 35
+ASCII_HEIGHT = 24
 DISPLAY_NAME = "João Natividade"
 
+# Pre-made ASCII art banner - stylized and readable
+ASCII_ART_BANNER = '''
+      ██╗ ██████╗  █████╗  ██████╗ 
+      ██║██╔═══██╗██╔══██╗██╔═══██╗
+      ██║██║   ██║███████║██║   ██║
+ ██   ██║██║   ██║██╔══██║██║   ██║
+ ╚█████╔╝╚██████╔╝██║  ██║╚██████╔╝
+  ╚════╝  ╚═════╝ ╚═╝  ╚═╝ ╚═════╝ 
+                                   
+ ███╗   ██╗ █████╗ ████████╗██╗██╗   ██╗
+ ████╗  ██║██╔══██╗╚══██╔══╝██║██║   ██║
+ ██╔██╗ ██║███████║   ██║   ██║██║   ██║
+ ██║╚██╗██║██╔══██║   ██║   ██║╚██╗ ██╔╝
+ ██║ ╚████║██║  ██║   ██║   ██║ ╚████╔╝ 
+ ╚═╝  ╚═══╝╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═══╝  
+                                        
+ ██████╗  █████╗ ██████╗ ███████╗       
+ ██╔══██╗██╔══██╗██╔══██╗██╔════╝       
+ ██║  ██║███████║██║  ██║█████╗         
+ ██║  ██║██╔══██║██║  ██║██╔══╝         
+ ██████╔╝██║  ██║██████╔╝███████╗       
+ ╚═════╝ ╚═╝  ╚═╝╚═════╝ ╚══════╝       
+'''
 
-def get_profile_picture_url():
-    """Get the user's GitHub profile picture URL."""
-    query = '''
-    query($login: String!) {
-        user(login: $login) {
-            avatarUrl
-        }
-    }'''
-    result = simple_request(query, {'login': USER_NAME})
-    return result['data']['user']['avatarUrl']
 
-
-def image_to_ascii(image_url: str) -> list[str]:
-    """Convert an image URL to ASCII art with enhanced quality."""
-    from PIL import ImageEnhance, ImageFilter
+def get_ascii_art() -> list[str]:
+    """Return pre-made ASCII art banner - guaranteed readable."""
+    lines = ASCII_ART_BANNER.strip().split('\n')
+    # Ensure each line is exactly ASCII_WIDTH characters
+    formatted_lines = []
+    for line in lines:
+        if len(line) < ASCII_WIDTH:
+            line = line + ' ' * (ASCII_WIDTH - len(line))
+        elif len(line) > ASCII_WIDTH:
+            line = line[:ASCII_WIDTH]
+        formatted_lines.append(line)
     
-    # Download image
-    response = requests.get(image_url)
-    img = Image.open(BytesIO(response.content))
+    # Pad to ASCII_HEIGHT if needed
+    while len(formatted_lines) < ASCII_HEIGHT:
+        formatted_lines.append(' ' * ASCII_WIDTH)
     
-    # Convert to RGB first (handle transparency)
-    if img.mode == 'RGBA':
-        background = Image.new('RGB', img.size, (255, 255, 255))
-        background.paste(img, mask=img.split()[3])
-        img = background
-    
-    # Convert to grayscale
-    img = img.convert('L')
-    
-    # Enhance contrast for better ASCII art
-    enhancer = ImageEnhance.Contrast(img)
-    img = enhancer.enhance(1.5)
-    
-    # Enhance sharpness
-    img = img.filter(ImageFilter.SHARPEN)
-    
-    # Resize image (adjust for terminal char aspect ratio ~2:1)
-    img = img.resize((ASCII_WIDTH, ASCII_HEIGHT))
-    
-    # Convert pixels to ASCII characters
-    ascii_lines = []
-    pixels = list(img.getdata())
-    
-    for y in range(ASCII_HEIGHT):
-        line = ""
-        for x in range(ASCII_WIDTH):
-            pixel = pixels[y * ASCII_WIDTH + x]
-            # Map pixel value (0-255) to ASCII character (inverted for dark background)
-            char_index = int((255 - pixel) / 256 * len(ASCII_CHARS))
-            char_index = min(char_index, len(ASCII_CHARS) - 1)
-            line += ASCII_CHARS[char_index]
-        ascii_lines.append(line)
-    
-    # Add empty lines and name centered below
-    name_line = DISPLAY_NAME.center(ASCII_WIDTH)
-    separator = "─" * ASCII_WIDTH
-    ascii_lines.append("")  # Empty line
-    ascii_lines.append(separator)
-    ascii_lines.append(name_line)
-    ascii_lines.append("")  # Empty line at end
-    
-    return ascii_lines
+    return formatted_lines[:ASCII_HEIGHT]
 
 
 
@@ -278,12 +255,12 @@ def main():
     print("Fetching GitHub stats...")
     
     try:
-        # Get profile picture and convert to ASCII
-        print("  Generating ASCII art from profile picture...")
-        avatar_url = get_profile_picture_url()
-        ascii_art = image_to_ascii(avatar_url)
-        print(f"  ASCII art generated ({len(ascii_art)} lines)")
+        # Get stylized ASCII art banner
+        print("  Loading ASCII art banner...")
+        ascii_art = get_ascii_art()
+        print(f"  ASCII art ready ({len(ascii_art)} lines)")
         
+
         # Get stats
         stats = get_user_stats()
         print(f"  Repos: {stats['repos']}, Stars: {stats['stars']}, Followers: {stats['followers']}")
