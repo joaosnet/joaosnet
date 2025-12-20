@@ -24,10 +24,11 @@ BIRTH_YEAR = 2001  # Only year, no date exposed
 PROGRAMMING_LANGUAGES = {'Python', 'JavaScript', 'TypeScript', 'Java', 'C', 'C++', 'C#', 'Go', 'Rust', 'Kotlin', 'Swift', 'Ruby', 'PHP', 'Dart', 'Scala'}
 MARKUP_LANGUAGES = {'HTML', 'CSS', 'SCSS', 'Sass', 'Less', 'Markdown', 'JSON', 'YAML', 'XML', 'LaTeX', 'Dockerfile'}
 
-# ASCII art configuration
-ASCII_CHARS = " .:-=+*#%@"  # From lightest to darkest
+# ASCII art configuration - more detailed character set
+ASCII_CHARS = " .'`^\",:;Il!i><~+_-?][}{1)(|\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$"
 ASCII_WIDTH = 35  # Characters wide
-ASCII_HEIGHT = 24  # Lines tall
+ASCII_HEIGHT = 20  # Lines tall (leaving room for name)
+DISPLAY_NAME = "João Natividade"
 
 
 def get_profile_picture_url():
@@ -43,15 +44,30 @@ def get_profile_picture_url():
 
 
 def image_to_ascii(image_url: str) -> list[str]:
-    """Convert an image URL to ASCII art."""
+    """Convert an image URL to ASCII art with enhanced quality."""
+    from PIL import ImageEnhance, ImageFilter
+    
     # Download image
     response = requests.get(image_url)
     img = Image.open(BytesIO(response.content))
     
+    # Convert to RGB first (handle transparency)
+    if img.mode == 'RGBA':
+        background = Image.new('RGB', img.size, (255, 255, 255))
+        background.paste(img, mask=img.split()[3])
+        img = background
+    
     # Convert to grayscale
     img = img.convert('L')
     
-    # Resize image to ASCII dimensions (adjust aspect ratio for terminal chars)
+    # Enhance contrast for better ASCII art
+    enhancer = ImageEnhance.Contrast(img)
+    img = enhancer.enhance(1.5)
+    
+    # Enhance sharpness
+    img = img.filter(ImageFilter.SHARPEN)
+    
+    # Resize image (adjust for terminal char aspect ratio ~2:1)
     img = img.resize((ASCII_WIDTH, ASCII_HEIGHT))
     
     # Convert pixels to ASCII characters
@@ -62,13 +78,22 @@ def image_to_ascii(image_url: str) -> list[str]:
         line = ""
         for x in range(ASCII_WIDTH):
             pixel = pixels[y * ASCII_WIDTH + x]
-            # Map pixel value (0-255) to ASCII character
-            char_index = int(pixel / 256 * len(ASCII_CHARS))
+            # Map pixel value (0-255) to ASCII character (inverted for dark background)
+            char_index = int((255 - pixel) / 256 * len(ASCII_CHARS))
             char_index = min(char_index, len(ASCII_CHARS) - 1)
             line += ASCII_CHARS[char_index]
         ascii_lines.append(line)
     
+    # Add empty lines and name centered below
+    name_line = DISPLAY_NAME.center(ASCII_WIDTH)
+    separator = "─" * ASCII_WIDTH
+    ascii_lines.append("")  # Empty line
+    ascii_lines.append(separator)
+    ascii_lines.append(name_line)
+    ascii_lines.append("")  # Empty line at end
+    
     return ascii_lines
+
 
 
 def calculate_age():
