@@ -62,30 +62,30 @@ text, tspan { white-space: pre; }
 
 <!-- ASCII Art from Profile Picture (24 lines, dynamically updated) -->
 <text x="15" y="55" class="ascii">
-<tspan x="15" y="55" class="line line-1" id="ascii_0">                                   </tspan>
-<tspan x="15" y="73" class="line line-2" id="ascii_1">                                   </tspan>
-<tspan x="15" y="91" class="line line-3" id="ascii_2">                         .         </tspan>
-<tspan x="15" y="109" class="line line-4" id="ascii_3">                   ...   .         </tspan>
-<tspan x="15" y="127" class="line line-5" id="ascii_4"> .    . .    ...:-==+=.            </tspan>
-<tspan x="15" y="145" class="line line-6" id="ascii_5">      .     .:.:-=++**:            </tspan>
-<tspan x="15" y="163" class="line line-7" id="ascii_6">       . .  ::.:-=+*##=.     .     </tspan>
-<tspan x="15" y="181" class="line line-8" id="ascii_7">           :-..:--====+::    .     </tspan>
-<tspan x="15" y="199" class="line line-9" id="ascii_8">       .  .:.    .: .-==+.         </tspan>
-<tspan x="15" y="217" class="line line-10" id="ascii_9">       .   -..  .=-::=#+=          </tspan>
-<tspan x="15" y="235" class="line line-11" id="ascii_10">    .  .   --...:++-=##*-          </tspan>
-<tspan x="15" y="253" class="line line-12" id="ascii_11">       .   -=:...=*+-*#-           </tspan>
-<tspan x="15" y="271" class="line line-13" id="ascii_12">    . ..   .-...:=+=-**:           </tspan>
-<tspan x="15" y="289" class="line line-14" id="ascii_13">    . ..    ::..:-****-            </tspan>
-<tspan x="15" y="307" class="line line-15" id="ascii_14">    .        -:::=**++:    .       </tspan>
-<tspan x="15" y="325" class="line line-16" id="ascii_15">    .        -::.:-=*=..           </tspan>
-<tspan x="15" y="343" class="line line-17" id="ascii_16">    .         ...-++-...           </tspan>
-<tspan x="15" y="361" class="line line-18" id="ascii_17">                .-=.               </tspan>
-<tspan x="15" y="379" class="line line-19" id="ascii_18">                                 . </tspan>
-<tspan x="15" y="397" class="line line-20" id="ascii_19">                .:=.             . </tspan>
-<tspan x="15" y="415" class="line line-21" id="ascii_20">                 =:               :</tspan>
-<tspan x="15" y="433" class="line line-22" id="ascii_21">                 =.               .</tspan>
-<tspan x="15" y="451" class="line line-23" id="ascii_22">                .--                </tspan>
-<tspan x="15" y="469" class="line line-24" id="ascii_23">                ..-                </tspan>
+<tspan x="15" y="55" class="line line-1" id="ascii_0">$$$$$$$@$$$$B$$@@@$@%$@$$@$$$$$$$$$</tspan>
+<tspan x="15" y="73" class="line line-2" id="ascii_1">$@$$$@BB$@@@%@@@@$$@%%%$@8@@$$$$$%$</tspan>
+<tspan x="15" y="91" class="line line-3" id="ascii_2">$$$$$@@%%@@%W$$$$$$@%88%Ba%@$$8@@%$</tspan>
+<tspan x="15" y="109" class="line line-4" id="ascii_3">@M$$$&amp;M8#BBB&amp;#8WbJvn/z8B@@%%$@%@@$$</tspan>
+<tspan x="15" y="127" class="line line-5" id="ascii_4">@&amp;@$@%#WB&amp;%$pwkZX\?&lt;:l0%%@8W$%$@@$$</tspan>
+<tspan x="15" y="145" class="line line-6" id="ascii_5">@BB$B$%M8o%MJOqYj/_"  }o%$%%@o$@B$$</tspan>
+<tspan x="15" y="163" class="line line-7" id="ascii_6">@8B@%$%MBB80Yo*qUCuzXf{XcWBB@#@88$$</tspan>
+<tspan x="15" y="181" class="line line-8" id="ascii_7">$$@$8@8a%$MCdM%$WXU#O/&lt;1_*@B@$$&amp;&amp;$$</tspan>
+<tspan x="15" y="199" class="line line-9" id="ascii_8">@$@$oB&amp;MB@%uJaM#0&lt;?zu! IjBBBB@@@B$$</tspan>
+<tspan x="15" y="217" class="line line-10" id="ascii_9">$$@$M%8M%@%v)wahm}:1c^ t*B%8B@@@@$@</tspan>
+<tspan x="15" y="235" class="line line-11" id="ascii_10">@$$$oB*#B%8ajw#*Zf_1j"&lt;d8%B%B@B@@$$</tspan>
+<tspan x="15" y="253" class="line line-12" id="ascii_11">$$@$*@&amp;&amp;@$%BbCwqZf,';lv@%%B%%$$@@$@</tspan>
+<tspan x="15" y="271" class="line line-13" id="ascii_12">$$$$h%$B@$8%BvYZdn?~i?b*$@@WW$@%B$$</tspan>
+<tspan x="15" y="289" class="line line-14" id="ascii_13">@$$$*B$%B$%B%kZpoJ)&gt;?OWp&amp;88@@$%8B$@</tspan>
+<tspan x="15" y="307" class="line line-15" id="ascii_14">B$$$&amp;B$@@$@@B$@8*n|wB8W&amp;@B8%@@$$%$@</tspan>
+<tspan x="15" y="325" class="line line-16" id="ascii_15">@$$$$@$@$$$$$$$$8MoM$B&amp;&amp;B$@$@$$@8*M</tspan>
+<tspan x="15" y="343" class="line line-17" id="ascii_16">$$@$$$$$$$$$$$$$aYx#$@@BB@@@@$$@$*h</tspan>
+<tspan x="15" y="361" class="line line-18" id="ascii_17">$$@$$$$$$$$$$$$$&amp;td$$%@$$%@$$$$@$%L</tspan>
+<tspan x="15" y="379" class="line line-19" id="ascii_18">$$$$$$$$$$$$$$$$MfL$$@@$$B@$$$@@B%8</tspan>
+<tspan x="15" y="397" class="line line-20" id="ascii_19">$$$$$$$$$$$$$$$BaquB$B@$$@@$$$@@$@B</tspan>
+<tspan x="15" y="415" class="line line-21" id="ascii_20"></tspan>
+<tspan x="15" y="433" class="line line-22" id="ascii_21">───────────────────────────────────</tspan>
+<tspan x="15" y="451" class="line line-23" id="ascii_22">          João Natividade          </tspan>
+<tspan x="15" y="469" class="line line-24" id="ascii_23"></tspan>
 </text>
 
 <!-- Info section -->
@@ -109,8 +109,8 @@ text, tspan { white-space: pre; }
 
 <tspan x="280" y="380" class="line line-15"><tspan class="header">GitHub Stats</tspan><tspan class="separator"> ──────────────────────────────────</tspan></tspan>
 <tspan x="280" y="405" class="line line-16"><tspan class="key">Repos</tspan><tspan class="separator">:</tspan> <tspan class="value" id="repo_data">46</tspan>  <tspan class="key">Stars</tspan><tspan class="separator">:</tspan> <tspan class="value" id="star_data">12</tspan>  <tspan class="key">Followers</tspan><tspan class="separator">:</tspan> <tspan class="value" id="follower_data">12</tspan></tspan>
-<tspan x="280" y="425" class="line line-17"><tspan class="key">Commits</tspan><tspan class="separator">:</tspan> <tspan class="value" id="commit_data">1,021</tspan>  <tspan class="key">Contributed</tspan><tspan class="separator">:</tspan> <tspan class="value" id="contrib_data">0</tspan></tspan>
-<tspan x="280" y="445" class="line line-18"><tspan class="key">Lines of Code</tspan><tspan class="separator">:</tspan> <tspan class="value" id="loc_data">93,600</tspan> (<tspan class="add" id="loc_add">112,320</tspan><tspan class="add">++</tspan> <tspan class="del" id="loc_del">18,720</tspan><tspan class="del">--</tspan>)</tspan>
+<tspan x="280" y="425" class="line line-17"><tspan class="key">Commits</tspan><tspan class="separator">:</tspan> <tspan class="value" id="commit_data">1,022</tspan>  <tspan class="key">Contributed</tspan><tspan class="separator">:</tspan> <tspan class="value" id="contrib_data">0</tspan></tspan>
+<tspan x="280" y="445" class="line line-18"><tspan class="key">Lines of Code</tspan><tspan class="separator">:</tspan> <tspan class="value" id="loc_data">93,700</tspan> (<tspan class="add" id="loc_add">112,440</tspan><tspan class="add">++</tspan> <tspan class="del" id="loc_del">18,740</tspan><tspan class="del">--</tspan>)</tspan>
 
 <tspan x="280" y="475" class="line line-19"><tspan class="comment"># Last updated:</tspan> <tspan class="value" id="last_updated">2025-12-20</tspan></tspan>
 </text>
