@@ -233,18 +233,19 @@ def update_svg(filename, stats, loc_stats, languages, ascii_art):
                 elem.text = value
                 break
     
-    # Update ASCII art in the SVG
-    # Find the ASCII art text element and update its tspan children
-    for elem in root.iter():
-        if elem.get('class') == 'ascii' or 'ascii' in (elem.get('class') or ''):
-            # Clear existing tspans and add new ones
-            tspans = list(elem)
-            for i, line in enumerate(ascii_art):
-                if i < len(tspans):
-                    tspans[i].text = line
+    # Update ASCII art lines (ascii_0 to ascii_23)
+    for i, line in enumerate(ascii_art):
+        if i >= 24:  # Only 24 lines available
+            break
+        element_id = f'ascii_{i}'
+        for elem in root.iter():
+            if elem.get('id') == element_id:
+                elem.text = line
+                break
     
     tree.write(filename, encoding='utf-8', xml_declaration=True)
     print(f"Updated {filename}")
+
 
 
 def main():
