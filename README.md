@@ -5,4 +5,7 @@
   </picture>
 </a>
 
-[![pt-br](https://img.shields.io/badge/lang-pt--br-green.svg)](./README.pt-br.md)
+<pre>
+<b># Language / Idioma</b>
+$ <a href="./README.pt-br.md">cat README.pt-br.md</a>  # 🇧🇷 Português
+</pre>
