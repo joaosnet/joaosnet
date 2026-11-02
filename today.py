@@ -215,7 +215,7 @@ def update_svg(filename, stats, loc_stats, languages, ascii_art):
     
     # Update text elements
     updates = {
-        'age_data': calculate_age(),
+        'age_data': 'Belém, Brazil',
         'languages_prog': languages['programming'],
         'languages_markup': languages['markup'],
         'repo_data': str(stats['repos']),
