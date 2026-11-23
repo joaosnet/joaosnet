@@ -109,10 +109,10 @@ text, tspan { white-space: pre; }
 
 <tspan x="280" y="380" class="line line-15"><tspan class="header">GitHub Stats</tspan><tspan class="separator"> ──────────────────────────────────</tspan></tspan>
 <tspan x="280" y="405" class="line line-16"><tspan class="key">Repos</tspan><tspan class="separator">:</tspan> <tspan class="value" id="repo_data">55</tspan>  <tspan class="key">Stars</tspan><tspan class="separator">:</tspan> <tspan class="value" id="star_data">14</tspan>  <tspan class="key">Followers</tspan><tspan class="separator">:</tspan> <tspan class="value" id="follower_data">10</tspan></tspan>
-<tspan x="280" y="425" class="line line-17"><tspan class="key">Commits</tspan><tspan class="separator">:</tspan> <tspan class="value" id="commit_data">895</tspan>  <tspan class="key">Contributed</tspan><tspan class="separator">:</tspan> <tspan class="value" id="contrib_data">2</tspan></tspan>
-<tspan x="280" y="445" class="line line-18"><tspan class="key">Est. LoC</tspan><tspan class="separator">:</tspan> <tspan class="value" id="loc_data">173,050</tspan> (<tspan class="add" id="loc_add">207,660</tspan><tspan class="add">++</tspan> <tspan class="del" id="loc_del">34,610</tspan><tspan class="del">--</tspan>)</tspan>
+<tspan x="280" y="425" class="line line-17"><tspan class="key">Commits</tspan><tspan class="separator">:</tspan> <tspan class="value" id="commit_data">776</tspan>  <tspan class="key">Contributed</tspan><tspan class="separator">:</tspan> <tspan class="value" id="contrib_data">2</tspan></tspan>
+<tspan x="280" y="445" class="line line-18"><tspan class="key">Est. LoC</tspan><tspan class="separator">:</tspan> <tspan class="value" id="loc_data">173,450</tspan> (<tspan class="add" id="loc_add">208,140</tspan><tspan class="add">++</tspan> <tspan class="del" id="loc_del">34,690</tspan><tspan class="del">--</tspan>)</tspan>
 
-<tspan x="280" y="475" class="line line-19"><tspan class="comment"># Last updated:</tspan> <tspan class="value" id="last_updated">2026-11-22</tspan></tspan>
+<tspan x="280" y="475" class="line line-19"><tspan class="comment"># Last updated:</tspan> <tspan class="value" id="last_updated">2026-11-23</tspan></tspan>
 </text>
 
 <!-- Blinking cursor -->
